@@ -170,7 +170,7 @@ HTMLActuator.prototype.scoreTweetButton = function () {
   tweet.setAttribute("data-counturl", "http://0x0800.github.io/2048-TIFFANY");
   tweet.textContent = "Tweet";
 
-  var text = "I scored \"" + Localize( this.score ).toUpperCase() + "\" at 2048-TIFFANY #2048game";
+  var text = "I scored " + this.score + "€ at 2048-TIFFANY #2048game";
   tweet.setAttribute("data-text", text);
 
   return tweet;
