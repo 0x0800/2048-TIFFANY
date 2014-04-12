@@ -531,6 +531,8 @@ hr {
   body {
     margin: 20px 0;
     padding: 0 20px;
+    background-size: 50%;
+    background-position: 50% top;
   }
 
   h1.title {
@@ -549,7 +551,7 @@ hr {
 
   .score-container, .best-container {
     margin-top: 0;
-    padding: 15px 0px;
+    padding: 0px 0px;
     min-width: 40px;
   }
 
@@ -564,7 +566,7 @@ hr {
     box-sizing: border-box;
     line-height: 1.65;
     font-size: 16px;
-    margin-top: 10px;
+    margin-top: 0px;
   }
 
   .restart-button, .retry-button {
@@ -598,6 +600,10 @@ hr {
     &.game-won .score-sharing {
       margin-top: 10px;
     }
+  }
+  
+  .legend-row p {
+    margin-top: 0px !important;
   }
 }
 
