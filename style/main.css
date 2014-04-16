@@ -324,33 +324,34 @@ hr {
     z-index: 10;
     font-size: 55px; }
     .tile .tile-inner img {
+      border-radius: 3px;
       width: 100%;
       height: 100%; }
   .tile.tile-2 .tile-inner {
-    background: #bcefe3;
+    background: white;
     box-shadow: 0 0 30px 10px rgba(0, 255, 255, 0), inset 0 0 0 1px rgba(255, 255, 255, 0); }
   .tile.tile-4 .tile-inner {
-    background: #a9ebe5;
+    background: white;
     box-shadow: 0 0 30px 10px rgba(0, 255, 255, 0), inset 0 0 0 1px rgba(255, 255, 255, 0); }
   .tile.tile-8 .tile-inner {
     color: white;
-    background: #96e8e8;
+    background: white;
     box-shadow: 0 0 30px 10px rgba(0, 255, 255, 0), inset 0 0 0 1px rgba(255, 255, 255, 0); }
   .tile.tile-16 .tile-inner {
     color: white;
-    background: #83e4eb;
+    background: white;
     box-shadow: 0 0 30px 10px rgba(0, 255, 255, 0), inset 0 0 0 1px rgba(255, 255, 255, 0); }
   .tile.tile-32 .tile-inner {
     color: white;
-    background: #70e1ee;
+    background: white;
     box-shadow: 0 0 30px 10px rgba(0, 255, 255, 0.07937), inset 0 0 0 1px rgba(255, 255, 255, 0.04762); }
   .tile.tile-64 .tile-inner {
     color: white;
-    background: #5eddf1;
+    background: white;
     box-shadow: 0 0 30px 10px rgba(0, 255, 255, 0.15873), inset 0 0 0 1px rgba(255, 255, 255, 0.09524); }
   .tile.tile-128 .tile-inner {
     color: white;
-    background: #4bdaf3;
+    background: white;
     box-shadow: 0 0 30px 10px rgba(0, 255, 255, 0.2381), inset 0 0 0 1px rgba(255, 255, 255, 0.14286);
     font-size: 45px; }
     @media screen and (max-width: 520px) {
@@ -358,7 +359,7 @@ hr {
         font-size: 25px; } }
   .tile.tile-256 .tile-inner {
     color: white;
-    background: #38d6f6;
+    background: white;
     box-shadow: 0 0 30px 10px rgba(0, 255, 255, 0.31746), inset 0 0 0 1px rgba(255, 255, 255, 0.19048);
     font-size: 45px; }
     @media screen and (max-width: 520px) {
@@ -366,7 +367,7 @@ hr {
         font-size: 25px; } }
   .tile.tile-512 .tile-inner {
     color: white;
-    background: #25d3f9;
+    background: white;
     box-shadow: 0 0 30px 10px rgba(0, 255, 255, 0.39683), inset 0 0 0 1px rgba(255, 255, 255, 0.2381);
     font-size: 45px; }
     @media screen and (max-width: 520px) {
@@ -374,7 +375,7 @@ hr {
         font-size: 25px; } }
   .tile.tile-1024 .tile-inner {
     color: white;
-    background: #12cffc;
+    background: white;
     box-shadow: 0 0 30px 10px rgba(0, 255, 255, 0.47619), inset 0 0 0 1px rgba(255, 255, 255, 0.28571);
     font-size: 35px; }
     @media screen and (max-width: 520px) {
@@ -382,7 +383,7 @@ hr {
         font-size: 15px; } }
   .tile.tile-2048 .tile-inner {
     color: white;
-    background: #00ccff;
+    background: white;
     box-shadow: 0 0 30px 10px rgba(0, 255, 255, 0.55556), inset 0 0 0 1px rgba(255, 255, 255, 0.33333);
     font-size: 35px; }
     @media screen and (max-width: 520px) {
@@ -783,60 +784,61 @@ hr {
   border-radius: 3px;
   background: rgba(188, 239, 227, 0.35); }
   .legend-cell img {
+    border-radius: 3px;
     width: 100%;
     height: 100%; }
 
 .cell-2 {
-  background: #bcefe3;
+  background: white;
   box-shadow: 0 0 30px 5px rgba(0, 255, 255, 0), inset 0 0 0 1px rgba(255, 255, 255, 0); }
 
 .cell-4 {
-  background: #a9ebe5;
+  background: white;
   box-shadow: 0 0 30px 5px rgba(0, 255, 255, 0), inset 0 0 0 1px rgba(255, 255, 255, 0); }
 
 .cell-8 {
   color: white;
-  background: #96e8e8;
+  background: white;
   box-shadow: 0 0 30px 5px rgba(0, 255, 255, 0), inset 0 0 0 1px rgba(255, 255, 255, 0); }
 
 .cell-16 {
   color: white;
-  background: #83e4eb;
+  background: white;
   box-shadow: 0 0 30px 5px rgba(0, 255, 255, 0), inset 0 0 0 1px rgba(255, 255, 255, 0); }
 
 .cell-32 {
   color: white;
-  background: #70e1ee;
+  background: white;
   box-shadow: 0 0 30px 5px rgba(0, 255, 255, 0.07937), inset 0 0 0 1px rgba(255, 255, 255, 0.04762); }
 
 .cell-64 {
   color: white;
-  background: #5eddf1;
+  background: white;
   box-shadow: 0 0 30px 5px rgba(0, 255, 255, 0.15873), inset 0 0 0 1px rgba(255, 255, 255, 0.09524); }
 
 .cell-128 {
   color: white;
-  background: #4bdaf3;
+  background: white;
   box-shadow: 0 0 30px 5px rgba(0, 255, 255, 0.2381), inset 0 0 0 1px rgba(255, 255, 255, 0.14286); }
 
 .cell-256 {
   color: white;
-  background: #38d6f6;
+  background: white;
   box-shadow: 0 0 30px 5px rgba(0, 255, 255, 0.31746), inset 0 0 0 1px rgba(255, 255, 255, 0.19048); }
 
 .cell-512 {
   color: white;
-  background: #25d3f9;
+  background: white;
   box-shadow: 0 0 30px 5px rgba(0, 255, 255, 0.39683), inset 0 0 0 1px rgba(255, 255, 255, 0.2381); }
 
 .cell-1024 {
   color: white;
-  background: #12cffc;
+  background: white;
   box-shadow: 0 0 30px 5px rgba(0, 255, 255, 0.47619), inset 0 0 0 1px rgba(255, 255, 255, 0.28571); }
 
 .cell-2048 {
   color: white;
-  background: #00ccff;
+  background: white;
   box-shadow: 0 0 30px 5px rgba(0, 255, 255, 0.55556), inset 0 0 0 1px rgba(255, 255, 255, 0.33333); }
 
 .repo-link {

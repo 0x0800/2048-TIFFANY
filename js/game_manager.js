@@ -11,6 +11,8 @@ function GameManager(size, InputManager, Actuator, StorageManager) {
   this.inputManager.on("restart", this.restart.bind(this));
   this.inputManager.on("keepPlaying", this.keepPlaying.bind(this));
 
+  //this.undoStack = [];
+
   this.setup();
   
 }
@@ -108,6 +110,8 @@ GameManager.prototype.setup = function () {
     this.over        = previousState.over;
     this.won         = previousState.won;
     this.keepPlaying = previousState.keepPlaying;
+    this.seed        = previousState.seed;
+    this.undoStack   = previousState.undoStack;
   } else {
     this.grid        = new Grid(this.size);
     this.score       = 0;
@@ -115,6 +119,8 @@ GameManager.prototype.setup = function () {
     this.over        = false;
     this.won         = false;
     this.keepPlaying = false;
+    this.seed        = Math.random();
+    this.undoStack   = [];
 
     // Add the initial tiles
     this.addStartTiles();
@@ -164,6 +170,10 @@ GameManager.prototype.addStartTiles = function () {
 // Adds a tile in a random position
 GameManager.prototype.addRandomTile = function () {
   if (this.grid.cellsAvailable()) {
+    Math.seedrandom(this.seed);
+    for (var i=0; i<this.score; i++) {
+      Math.random();
+    }
     var value = Math.random() < 0.9 ? 2 : 4;
     var tile = new Tile(this.grid.randomAvailableCell(), value);
 
@@ -192,9 +202,11 @@ GameManager.prototype.actuate = function () {
     level:      this.level,
     over:       this.over,
     won:        this.won,
+    seed:       this.seed,
     bestScore:  this.storageManager.getBestScore(),
     bestLevel:  this.storageManager.getBestLevel(),
-    terminated: this.isGameTerminated()
+    terminated: this.isGameTerminated(),
+    undoStack:  this.undoStack
   });
 
 };
@@ -207,7 +219,9 @@ GameManager.prototype.serialize = function () {
     level:       this.level,
     over:        this.over,
     won:         this.won,
-    keepPlaying: this.keepPlaying
+    seed:        this.seed,
+    keepPlaying: this.keepPlaying,
+    undoStack:   this.undoStack
   };
 };
 
@@ -230,9 +244,33 @@ GameManager.prototype.moveTile = function (tile, cell) {
 
 // Move tiles on the grid in the specified direction
 GameManager.prototype.move = function (direction) {
-  // 0: up, 1: right, 2: down, 3: left
+  // 0: up, 1: right, 2: down, 3: left, -1 undo
   var self = this;
+  
+  if (direction == -1) {
+    if (this.undoStack.length > 0) {
+      var prev = this.undoStack.pop();
 
+      this.grid.build();
+      this.score = prev.score;
+      for (var i in prev.tiles) {
+        var t = prev.tiles[i];
+        var tile = new Tile({x: t.x, y: t.y}, t.value);
+        tile.previousPosition = {
+          x: t.previousPosition.x,
+          y: t.previousPosition.y
+        };
+        this.grid.cells[tile.x][tile.y] = tile;
+      }
+      this.over = false;
+      this.won = false;
+      this.keepPlaying = false;
+      this.actuator.continueGame();
+      this.actuate();
+    }
+    return;
+  }
+  
   if (this.isGameTerminated()) return; // Don't do anything if the game's over
 
   var cell, tile;
@@ -240,6 +278,7 @@ GameManager.prototype.move = function (direction) {
   var vector     = this.getVector(direction);
   var traversals = this.buildTraversals(vector);
   var moved      = false;
+  var undo       = {score: this.score, tiles: []};
 
   // Save the current tile positions and remove merger information
   this.prepareTiles();
@@ -256,6 +295,10 @@ GameManager.prototype.move = function (direction) {
 
         // Only one merger per row traversal?
         if (next && next.value === tile.value && !next.mergedFrom) {
+          
+          // We need to save tile since it will get removed
+          undo.tiles.push(tile.save(positions.next));
+          
           //var merged = new Tile(positions.next, prezzo[tile.value]);
           var merged = new Tile(positions.next, tile.value * 2);
           merged.mergedFrom = [tile, next];
@@ -273,6 +316,10 @@ GameManager.prototype.move = function (direction) {
           // The mighty 2048 tile
           if (merged.value === 2048) self.won = true;
         } else {
+          
+          // Save backup information
+          undo.tiles.push(tile.save(positions.farthest));
+          
           self.moveTile(tile, positions.farthest);
         }
 
@@ -289,6 +336,9 @@ GameManager.prototype.move = function (direction) {
     if (!this.movesAvailable()) {
       this.over = true; // Game over!
     }
+    
+    // Save state
+    this.undoStack.push(undo);
 
     this.actuate();
   }
